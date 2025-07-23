@@ -1,0 +1,448 @@
+/* Age Verification Modal Styles */
+
+.age-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  padding: 1rem;
+}
+
+.age-modal-overlay--visible {
+  opacity: 1;
+}
+
+.age-modal {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 20px;
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  transform: scale(0.8) translateY(20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.age-modal--visible {
+  transform: scale(1) translateY(0);
+}
+
+.age-modal-content {
+  padding: 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Logo Section */
+.age-modal-logo {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  animation: logoFloat 3s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+.logo-text {
+  font-size: 1.75rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+/* Modal Body */
+.age-modal-body {
+  text-align: center;
+}
+
+.age-modal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.age-modal-description {
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.age-modal-question {
+  margin-bottom: 2rem;
+}
+
+.age-modal-question h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+/* Age Verification Buttons */
+.age-modal-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.age-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 1rem;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.age-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.age-btn:hover::before {
+  left: 100%;
+}
+
+.age-btn--yes {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+  border-color: #10b981;
+}
+
+.age-btn--yes:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+}
+
+.age-btn--no {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #ffffff;
+  border-color: #ef4444;
+}
+
+.age-btn--no:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
+}
+
+.btn-icon {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.btn-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+}
+
+/* Disclaimer */
+.age-modal-disclaimer {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1.5rem;
+}
+
+.age-modal-disclaimer p {
+  font-size: 0.75rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Age Restriction Content */
+.age-restriction-content {
+  text-align: center;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.restriction-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.restriction-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #dc2626;
+  margin-bottom: 1rem;
+}
+
+.restriction-message {
+  font-size: 1.125rem;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.restriction-submessage {
+  color: #6b7280;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.restriction-links {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1.5rem;
+}
+
+.info-link {
+  color: #4f46e5;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.info-link:hover {
+  color: #4338ca;
+  text-decoration: underline;
+}
+
+/* Success Content */
+.age-success-content {
+  text-align: center;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.success-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: bounce 1s ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+.success-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 1rem;
+}
+
+.success-message {
+  color: #374151;
+  margin-bottom: 2rem;
+  font-size: 1.125rem;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e5e7eb;
+  border-top: 3px solid #4f46e5;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Decorative Elements */
+.age-modal-decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.decoration {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(124, 58, 237, 0.1));
+  animation: decorationFloat 8s ease-in-out infinite;
+}
+
+.decoration--1 {
+  width: 100px;
+  height: 100px;
+  top: -50px;
+  right: -50px;
+  animation-delay: 0s;
+}
+
+.decoration--2 {
+  width: 60px;
+  height: 60px;
+  bottom: -30px;
+  left: -30px;
+  animation-delay: 2s;
+}
+
+.decoration--3 {
+  width: 80px;
+  height: 80px;
+  top: 50%;
+  right: -40px;
+  animation-delay: 4s;
+}
+
+@keyframes decorationFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .age-modal-overlay {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(15, 23, 42, 0.95));
+  }
+
+  .age-modal {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    box-shadow: 
+      0 25px 50px -12px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .age-modal-title,
+  .age-modal-question h3 {
+    color: #f1f5f9;
+  }
+
+  .age-modal-description,
+  .age-modal-disclaimer p {
+    color: #94a3b8;
+  }
+
+  .restriction-message {
+    color: #e2e8f0;
+  }
+
+  .restriction-submessage {
+    color: #94a3b8;
+  }
+
+  .success-message {
+    color: #e2e8f0;
+  }
+
+  .restriction-links {
+    border-top-color: #334155;
+  }
+
+  .age-modal-disclaimer {
+    border-top-color: #334155;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .age-modal-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .age-modal-buttons {
+    flex-direction: column;
+  }
+
+  .age-btn {
+    padding: 1.25rem 1rem;
+  }
+
+  .logo-icon {
+    font-size: 2.5rem;
+  }
+
+  .logo-text {
+    font-size: 1.5rem;
+  }
+
+  .age-modal-title {
+    font-size: 1.25rem;
+  }
+
+  .restriction-icon,
+  .success-icon {
+    font-size: 3rem;
+  }
+
+  .restriction-title,
+  .success-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .age-modal-overlay,
+  .age-modal,
+  .age-btn,
+  .logo-icon,
+  .decoration,
+  .loading-spinner {
+    animation: none;
+    transition: none;
+  }
+
+  .age-btn:hover {
+    transform: none;
+  }
+}
