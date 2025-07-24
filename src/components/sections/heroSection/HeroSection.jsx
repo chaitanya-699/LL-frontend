@@ -53,7 +53,7 @@ const HeroSection = React.forwardRef((props, ref) => {
               <h1 className="hero-title">{slide.title}</h1>
               {slide.subtitle && <p className="hero-subtitle">{slide.subtitle}</p>}
               <p className="hero-desc">{slide.description}</p>
-              <button className="hero-cta">View Collection</button>
+              <button className="hero-cta"><span>View Collection</span></button>
             </div>
           ))}
         </div>

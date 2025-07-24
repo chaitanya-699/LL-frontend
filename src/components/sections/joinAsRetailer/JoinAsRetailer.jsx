@@ -91,13 +91,13 @@ const JoinAsRetailer = React.forwardRef((props, ref) => {
                 className="retailer-btn-primary"
                 onClick={toggleForm}
               >
-                {retailerData.hero.primaryCTA}
+                <span>{retailerData.hero.primaryCTA}</span>
               </button>
               <button 
                 className="retailer-btn-secondary"
                 onClick={() => openModal('benefits')}
               >
-                {retailerData.hero.secondaryCTA}
+                <span>{retailerData.hero.secondaryCTA}</span>
               </button>
             </div>
 

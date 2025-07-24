@@ -5,43 +5,22 @@ import './Stores.css';
 export default function Stores() {
   const [currentStoreIndex, setCurrentStoreIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
   const sectionRef = useRef(null);
+  const [animate, setAnimate] = useState(false);
 
-  // Intersection Observer for load animations
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Reset and trigger animations every time section comes into view
-            setIsLoaded(false);
-            setHasAnimated(false);
-
-            // Small delay to ensure reset, then trigger animations
-            setTimeout(() => {
-              setIsLoaded(true);
-              setHasAnimated(true);
-            }, 100);
-          }
-        });
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setAnimate(true), 10);
+        } else {
+          setAnimate(false);
+        }
       },
-      {
-        threshold: 0.2, // Trigger when 20% of section is visible
-        rootMargin: '-50px 0px -50px 0px' // Add some margin for better timing
-      }
+      { threshold: 0.3 }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
   }, []);
 
   // Auto-rotate featured store every 5 seconds
@@ -68,24 +47,22 @@ export default function Stores() {
 
   // Triple brands for seamless scroll
   const brandBelt = [...brands, ...brands, ...brands];
+  
+  // Debug: log brand data
+  console.log('Brand Belt Data:', brandBelt.length, brands);
 
   return (
-    <section
-      ref={sectionRef}
-      className={`stores-section compact-design ${isLoaded ? 'loaded' : ''} ${hasAnimated ? 'animated' : ''}`}
-    >
-      <div className="stores-container">
-
-        {/* Left Side - Store Info */}
-        <div className={`stores-left ${isLoaded ? 'slide-in-left' : ''}`}>
-          <div className={`stores-header ${isLoaded ? 'fade-in-up' : ''}`}>
-            <h2 className="stores-title">Our Premium Locations</h2>
-            <p className="stores-subtitle">
+    <section className="stores-section" ref={sectionRef}>
+      <div className="stores-main">
+        <div className={`stores-left${animate ? ' animate' : ''}`}>
+          <div className="stores-header">
+            <h2 className={`stores-title${animate ? ' animate' : ''}`}>Our Premium Locations</h2>
+            <p className={`stores-subtitle${animate ? ' animate' : ''}`}>
               Visit our curated stores for an exceptional spirits experience
             </p>
           </div>
 
-          <div className={`featured-store ${isLoaded ? 'scale-in' : ''}`}>
+          <div className="featured-store">
             <div className="store-image-container">
               <img
                 src={stores[currentStoreIndex].image}
@@ -110,9 +87,11 @@ export default function Stores() {
                   rel="noopener noreferrer"
                   className="store-btn primary"
                 >
-                  Get Directions
+                  <span>Get Directions</span>
                 </a>
-                <button className="store-btn secondary">Details</button>
+                <button className="store-btn secondary">
+                  <span>Details</span>
+                </button>
               </div>
             </div>
           </div>
@@ -129,15 +108,15 @@ export default function Stores() {
           </div>
         </div>
 
-        {/* Right Side - All Stores Grid */}
-        <div className="stores-right">
-          <h3 className="grid-title">All Locations</h3>
+        <div className={`stores-right${animate ? ' animate' : ''}`}>
+          <h3 className="stores-right-title">All Locations</h3>
           <div className="stores-grid">
             {stores.map((store, index) => (
               <div
                 key={store.name}
-                className={`store-card ${index === currentStoreIndex ? 'active' : ''}`}
+                className={`store-card ${index === currentStoreIndex ? 'active' : ''} ${animate ? 'animate' : ''}`}
                 onClick={() => goToStore(index)}
+                style={{ animationDelay: animate ? `${index * 0.1 + 0.2}s` : '0s' }}
               >
                 <div className="card-image">
                   <img src={store.image} alt={store.name} />
@@ -152,14 +131,25 @@ export default function Stores() {
         </div>
       </div>
 
-      {/* Bottom Brand Belt */}
-      <div className="brands-belt">
+      {/* Brand Belt Section */}
+      <div className={`brands-belt${animate ? ' animate' : ''}`}>
+        <div className="brands-belt-header">
+          <h3 className="brands-title">Our Premium Partners</h3>
+        </div>
         <div className="brands-scroll">
           {brandBelt.map((brand, idx) => (
             <div className="brand-item" key={`${brand.name}-${idx}`}>
-              <img src={brand.logo} alt={brand.name} />
+              <div className="brand-fallback">
+                {brand.name}
+              </div>
             </div>
           ))}
+          {/* Debug: Ensure render */}
+          <div className="brand-item">
+            <div className="brand-fallback" style={{background: 'red', color: 'white'}}>
+              TEST BRAND
+            </div>
+          </div>
         </div>
       </div>
     </section>
