@@ -28,3 +28,4 @@ const Header = ({ onNavigate }) => {
 };
 
 export default Header;
+

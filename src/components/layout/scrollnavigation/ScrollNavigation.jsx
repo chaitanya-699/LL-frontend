@@ -25,3 +25,4 @@ const ScrollNavigation = ({ onNavigate, activeSection, sectionCount }) => {
 };
 
 export default ScrollNavigation;
+

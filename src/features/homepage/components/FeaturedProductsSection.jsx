@@ -14,3 +14,4 @@ const FeaturedProductsSection = () => (
 );
 
 export default FeaturedProductsSection;
+
