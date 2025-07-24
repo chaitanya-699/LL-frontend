@@ -10,7 +10,7 @@ function App() {
      <HomePage className="homepage"/>
     </>
   )
- 7f37fea (new design)
+
 }
 
 export default App
