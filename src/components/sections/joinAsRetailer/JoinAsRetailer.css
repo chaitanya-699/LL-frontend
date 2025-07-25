@@ -4,8 +4,17 @@
   height: 100vh;
   overflow: hidden;
   display: flex;
-  background: #0a0a0a;
+  background: var(--gradient-dark);
   position: relative;
+}
+
+#retailer-join-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top right, var(--accent-purple) 0%, transparent 60%);
+  opacity: 0.04;
+  z-index: 1;
 }
 
 .retailer-main-container {
@@ -17,12 +26,21 @@
 /* Left Panel - Hero Content */
 .retailer-left-panel {
   flex: 0 0 45%;
-  background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+  background: var(--bg-card);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 3rem 2rem;
   position: relative;
+  z-index: 2;
+}
+
+.retailer-left-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-darker) 100%);
+  z-index: -1;
 }
 
 .retailer-hero-content {
@@ -32,43 +50,51 @@
 
 .retailer-badge {
   display: inline-block;
-  background: rgba(212, 175, 55, 0.1);
-  color: #D4AF37;
-  padding: 0.5rem 1rem;
-  border-radius: 2rem;
-  font-family: 'Manrope', sans-serif;
-  font-size: 0.85rem;
+  background: var(--accent-gold-glow);
+  color: var(--accent-gold);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-full);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 1.5rem;
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  border: 1px solid var(--border-color-light);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm);
 }
 
 .retailer-main-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  color: #fff;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  color: var(--text-light);
   margin: 0 0 1rem 0;
   line-height: 1.1;
   font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--text-light) 0%, var(--accent-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .retailer-main-subtitle {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: clamp(1.1rem, 2vw, 1.3rem);
-  color: #D4AF37;
+  color: var(--accent-gold);
   margin-bottom: 1rem;
   font-weight: 600;
   line-height: 1.3;
 }
 
 .retailer-main-description {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: clamp(0.95rem, 1.5vw, 1.05rem);
-  color: #bdbdbd;
+  color: var(--text-secondary);
   margin-bottom: 2rem;
-  line-height: 1.6;
+  line-height: 1.7;
+  opacity: 0.9;
 }
 
 .retailer-cta-container {
@@ -79,43 +105,83 @@
 }
 
 .retailer-btn-primary {
-  background: #D4AF37;
-  color: #0a0a0a;
+  background: var(--gradient-gold);
+  color: var(--bg-dark);
   border: none;
-  padding: 1rem 2rem;
-  border-radius: 2rem;
-  font-family: 'Manrope', sans-serif;
-  font-weight: 700;
+  padding: 1.2rem 2.5rem;
+  border-radius: var(--radius-full);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
-  min-width: 160px;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-gold);
+  min-width: 180px;
+  position: relative;
+  overflow: hidden;
+}
+
+.retailer-btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent-gold-light) 0%, var(--accent-gold) 100%);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
 }
 
 .retailer-btn-primary:hover {
-  background: #facc15;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(212, 175, 55, 0.3);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 40px var(--accent-gold-glow);
+}
+
+.retailer-btn-primary:hover::before {
+  opacity: 1;
+}
+
+.retailer-btn-primary span {
+  position: relative;
+  z-index: 1;
 }
 
 .retailer-btn-secondary {
   background: transparent;
-  color: #D4AF37;
-  border: 2px solid #D4AF37;
+  color: var(--accent-gold);
+  border: 2px solid var(--accent-gold);
   padding: 1rem 2rem;
-  border-radius: 2rem;
-  font-family: 'Manrope', sans-serif;
+  border-radius: var(--radius-full);
+  font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  min-width: 160px;
+  transition: all var(--transition-normal);
+  min-width: 180px;
+  position: relative;
+  overflow: hidden;
+}
+
+.retailer-btn-secondary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent-gold-glow);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
 }
 
 .retailer-btn-secondary:hover {
-  background: rgba(212, 175, 55, 0.1);
   transform: translateY(-2px);
+  border-color: var(--accent-gold-light);
+  box-shadow: var(--shadow-md);
+}
+
+.retailer-btn-secondary:hover::before {
+  opacity: 1;
+}
+
+.retailer-btn-secondary span {
+  position: relative;
+  z-index: 1;
 }
 
 /* Stats Row */
@@ -731,8 +797,61 @@
   margin-bottom: 1.5rem;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* Enhanced Responsive Design */
+@media (max-width: 1200px) {
+  .retailer-left-panel {
+    flex: 0 0 42%;
+    padding: 2.5rem 1.8rem;
+  }
+
+  .retailer-main-title {
+    font-size: clamp(2.2rem, 3.5vw, 3rem);
+  }
+
+  .retailer-main-subtitle {
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+  }
+
+  .retailer-main-description {
+    font-size: clamp(0.9rem, 1.3vw, 1rem);
+  }
+}
+
+@media (max-width: 1024px) {
+  #retailer-join-section.retailer-join-section {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .retailer-left-panel {
+    flex: 0 0 45%;
+    padding: 2.5rem 2rem;
+  }
+
+  .retailer-content-scroll {
+    padding: 2rem 1.5rem;
+  }
+
+  .retailer-btn-primary,
+  .retailer-btn-secondary {
+    padding: 1rem 2rem;
+    min-width: 160px;
+  }
+
+  .retailer-stats-row {
+    gap: 1.5rem;
+  }
+
+  .retailer-stat-number {
+    font-size: 1.6rem;
+  }
+
+  .retailer-stat-label {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 900px) {
   #retailer-join-section.retailer-join-section {
     flex-direction: column;
     height: auto;
@@ -746,8 +865,9 @@
   
   .retailer-left-panel {
     flex: none;
-    padding: 2rem 1.5rem;
-    min-height: 50vh;
+    padding: 3rem 2rem;
+    min-height: auto;
+    text-align: center;
   }
   
   .retailer-right-panel {
@@ -755,7 +875,7 @@
   }
   
   .retailer-content-scroll {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
     max-height: none;
     overflow: visible;
   }
@@ -766,12 +886,189 @@
   
   .retailer-btn-primary,
   .retailer-btn-secondary {
-    min-width: 140px;
+    min-width: 160px;
   }
   
   .retailer-stats-row {
     justify-content: center;
+    gap: 2rem;
+  }
+
+  .retailer-hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .retailer-left-panel {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .retailer-content-scroll {
+    padding: 1.5rem;
+  }
+  
+  .retailer-main-title {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+  }
+
+  .retailer-main-subtitle {
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+  }
+
+  .retailer-main-description {
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    margin-bottom: 1.5rem;
+  }
+  
+  .retailer-btn-primary,
+  .retailer-btn-secondary {
+    padding: 0.9rem 1.8rem;
+    font-size: 0.95rem;
+    min-width: 150px;
+  }
+  
+  .retailer-stats-row {
     gap: 1.5rem;
+  }
+
+  .retailer-stat-number {
+    font-size: 1.5rem;
+  }
+
+  .retailer-stat-label {
+    font-size: 0.75rem;
+  }
+
+  .retailer-section-heading {
+    font-size: 1.3rem;
+  }
+
+  .retailer-benefit-item {
+    padding: 0.8rem;
+  }
+
+  .retailer-benefit-name {
+    font-size: 0.95rem;
+  }
+
+  .retailer-benefit-desc {
+    font-size: 0.8rem;
+  }
+
+  .retailer-price-item {
+    padding: 1rem;
+    min-height: 100px;
+  }
+
+  .retailer-price-name {
+    font-size: 0.95rem;
+  }
+
+  .retailer-price-value {
+    font-size: 1.2rem;
+  }
+
+  .retailer-price-term {
+    font-size: 0.7rem;
+  }
+
+  .retailer-price-ideal {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .retailer-left-panel {
+    padding: 2rem 1.5rem;
+  }
+  
+  .retailer-content-scroll {
+    padding: 1.5rem 1rem;
+  }
+
+  .retailer-main-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  }
+
+  .retailer-main-subtitle {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+  }
+
+  .retailer-main-description {
+    font-size: clamp(0.85rem, 1.3vw, 0.95rem);
+  }
+  
+  .retailer-cta-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  
+  .retailer-btn-primary,
+  .retailer-btn-secondary {
+    width: 100%;
+    max-width: 280px;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .retailer-stats-row {
+    gap: 1.2rem;
+  }
+
+  .retailer-stat-number {
+    font-size: 1.4rem;
+  }
+
+  .retailer-stat-label {
+    font-size: 0.7rem;
+  }
+
+  .retailer-section-heading {
+    font-size: 1.2rem;
+  }
+
+  .retailer-benefit-item {
+    padding: 0.7rem;
+    gap: 0.8rem;
+  }
+
+  .retailer-benefit-icon-small {
+    font-size: 1.3rem;
+  }
+
+  .retailer-benefit-name {
+    font-size: 0.9rem;
+  }
+
+  .retailer-benefit-desc {
+    font-size: 0.75rem;
+  }
+
+  .retailer-price-item {
+    padding: 0.9rem;
+    min-height: 90px;
+  }
+
+  .retailer-price-name {
+    font-size: 0.9rem;
+  }
+
+  .retailer-price-value {
+    font-size: 1.1rem;
+  }
+
+  .retailer-action-link {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  
+  .retailer-form-container,
+  .retailer-modal-container {
+    padding: 1.5rem;
+    width: 95vw;
   }
 }
 
@@ -783,26 +1080,97 @@
   .retailer-content-scroll {
     padding: 1rem;
   }
-  
-  .retailer-cta-container {
-    flex-direction: column;
-    align-items: center;
+
+  .retailer-main-title {
+    font-size: clamp(1.6rem, 3vw, 2rem);
+  }
+
+  .retailer-main-subtitle {
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+  }
+
+  .retailer-main-description {
+    font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+  }
+
+  .retailer-badge {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
   }
   
   .retailer-btn-primary,
   .retailer-btn-secondary {
-    width: 100%;
-    max-width: 280px;
+    padding: 0.7rem 1.3rem;
+    font-size: 0.85rem;
   }
   
   .retailer-stats-row {
     gap: 1rem;
   }
+
+  .retailer-stat-number {
+    font-size: 1.3rem;
+  }
+
+  .retailer-stat-label {
+    font-size: 0.65rem;
+  }
+
+  .retailer-section-heading {
+    font-size: 1.1rem;
+  }
+
+  .retailer-benefit-item {
+    padding: 0.6rem;
+    gap: 0.7rem;
+  }
+
+  .retailer-benefit-icon-small {
+    font-size: 1.2rem;
+  }
+
+  .retailer-benefit-name {
+    font-size: 0.85rem;
+  }
+
+  .retailer-benefit-desc {
+    font-size: 0.7rem;
+  }
+
+  .retailer-price-item {
+    padding: 0.8rem;
+    min-height: 80px;
+  }
+
+  .retailer-price-name {
+    font-size: 0.85rem;
+  }
+
+  .retailer-price-value {
+    font-size: 1rem;
+  }
+
+  .retailer-price-term {
+    font-size: 0.65rem;
+  }
+
+  .retailer-price-ideal {
+    font-size: 0.65rem;
+  }
+
+  .retailer-action-link {
+    padding: 0.6rem 0.7rem;
+    font-size: 0.8rem;
+  }
   
   .retailer-form-container,
   .retailer-modal-container {
-    padding: 1.5rem;
-    width: 95vw;
+    padding: 1rem;
+    width: 98vw;
+  }
+
+  .retailer-modal-title {
+    font-size: 1.5rem;
   }
 }
 
@@ -815,5 +1183,17 @@
   
   .retailer-content-scroll {
     padding: 1.5rem;
+  }
+
+  .retailer-main-title {
+    font-size: clamp(2.2rem, 3.2vw, 2.8rem);
+  }
+
+  .retailer-main-subtitle {
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
+  }
+
+  .retailer-main-description {
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
   }
 }

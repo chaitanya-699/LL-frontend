@@ -37,7 +37,7 @@ export default function FeaturedProducts() {
                 <p>{product.description}</p>
                 <div className="featured-card-bottom">
                   <span className="featured-card-price">{product.price}</span>
-                  <button className="featured-card-btn">{product.button}</button>
+                  <button className="featured-card-btn"><span>{product.button}</span></button>
                 </div>
               </div>
             </div>
@@ -49,7 +49,7 @@ export default function FeaturedProducts() {
         <p className="featured-desc">
           Discover our handpicked selection of premium spirits, each chosen for their exceptional quality and unique character. Elevate your collection with these exclusive bottles.
         </p>
-        <button className="featured-cta">Browse All Products</button>
+        <button className="featured-cta"><span>Browse All Products</span></button>
       </div>
     </section>
   );

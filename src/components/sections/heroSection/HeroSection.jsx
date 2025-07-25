@@ -53,7 +53,7 @@ const HeroSection = React.forwardRef((props, ref) => {
               <h1 className="hero-title">{slide.title}</h1>
               {slide.subtitle && <p className="hero-subtitle">{slide.subtitle}</p>}
               <p className="hero-desc">{slide.description}</p>
-              <button className="hero-cta">View Collection</button>
+              <button className="hero-cta"><span>View Collection</span></button>
             </div>
           ))}
         </div>
@@ -73,14 +73,27 @@ const HeroSection = React.forwardRef((props, ref) => {
               key={slide.image}
               className="hero-image-slide"
               style={{
-                backgroundImage: `url(${slide.image})`,
                 transform: `translateY(${-(idx - current) * 100}%)`,
                 opacity: idx === current ? 1 : 0,
                 zIndex: idx === current ? 2 : 1,
                 pointerEvents: idx === current ? 'auto' : 'none',
               }}
-            >
-              <div className="hero-image-overlay"></div>
+              >
+              <div 
+                className="hero-image-background"
+                style={{
+                  backgroundImage: `url(${slide.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  width: '100%',
+                  height: '100%',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  loading: idx === current || idx === (current + 1) % slideCount || idx === (current - 1 + slideCount) % slideCount ? 'eager' : 'lazy'
+                }}
+              ></div>
+                <div className="hero-image-overlay"></div>
             </div>
           ))}
         </div>

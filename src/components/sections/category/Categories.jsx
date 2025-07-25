@@ -27,9 +27,9 @@ export default function Categories() {
         <h2 className={`categories-title${animate ? ' animate' : ''}`}>Shop by Category</h2>
         <p className={`categories-desc${animate ? ' animate' : ''}`}>Discover our curated selection of liquors. Choose your favorite and explore our exclusive collections.</p>
         <div className="categories-actions">
-          <button className="categories-btn">All</button>
-          <button className="categories-btn">Popular</button>
-          <button className="categories-btn">New Arrivals</button>
+          <button className="categories-btn"><span>All</span></button>
+          <button className="categories-btn"><span>Popular</span></button>
+          <button className="categories-btn"><span>New Arrivals</span></button>
         </div>
       </div>
       <div className="categories-right">
@@ -47,7 +47,7 @@ export default function Categories() {
               <div className="category-card-content">
                 <h3>{cat.title}</h3>
                 <p>{cat.description}</p>
-                <button className="category-card-btn">{cat.button}</button>
+                <button className="category-card-btn"><span>{cat.button}</span></button>
               </div>
             </div>
           ))}
